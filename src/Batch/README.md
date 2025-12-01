@@ -6,11 +6,11 @@ This notebook implements an Enterprise-Grade Batch Processing Pipeline using Apa
 
 Unlike simple ETL pipelines, this system applies statistical analysis, fraud detection forensics, and geospatial logic to enrich the data with actionable business insights (Deal Scores, Trust Scores, and Arbitrage Opportunities).
 
-⚙️ System Architecture
+System Architecture
 
 Input: Raw CSV Data (Local or GCS) $\rightarrow$ Spark Processing (Cleaning, Forensics, Scoring) $\rightarrow$ Output: BigQuery Table $\rightarrow$ Viz: Looker Studio Dashboard
 
-🚀 Pipeline Modules
+Pipeline Modules
 
 1. Environment & Configuration
 
