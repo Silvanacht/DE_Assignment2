@@ -43,7 +43,7 @@ def consume_and_stream_to_bq():
         bootstrap_servers=[KAFKA_BROKER],
         auto_offset_reset='latest', 
         # Make sure to timeout after 1 min of no data received
-        consumer_timeout_ms=8000,
+        consumer_timeout_ms=60000,
         enable_auto_commit=True,
         # Deserialize the incoming bytes (from your producer) into a Python dictionary
         value_deserializer=lambda x: json.loads(x.decode('utf-8'))
