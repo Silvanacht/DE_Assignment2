@@ -12,7 +12,7 @@ KAFKA_BROKER = "34.56.180.242:9092"
 # 3. New topic name for the real assignment
 KAFKA_TOPIC = 'car_data'
 # 4. Specify the amount of rows to process from the data
-NUM_ROWS_TO_PROCESS = 1000
+NUM_ROWS_TO_PROCESS = 10000
 
 
 if __name__ == '__main__':
@@ -30,11 +30,29 @@ if __name__ == '__main__':
         # Load the CSV file using pandas
         df = pd.read_csv(CSV_FILE_PATH,
         nrows=NUM_ROWS_TO_PROCESS)
+
+        # 1. Remove na values before sending data to kafka and prepare data 
+        # we do this in the producer since it has pandas functionality, rather than pyspark
+        df_cleaned = df.dropna(subset=["manufacturer", "model", "year", "price"])
+        
+        # 2. Filter by Price Range (Hard Filter)
+        # Combine the two price filters into a single boolean indexing operation
+        df_cleaned = df_cleaned[
+            (df_cleaned["price"] > 500) & 
+            (df_cleaned["price"] < 200000)
+        ]
+        
+        # 3. Impute Remaining Missing Values (Soft Imputation)
+        df_cleaned = df_cleaned.fillna({
+            "odometer": -1, 
+            "title_status": "clean"
+        })
+        
+        print(f"Cleaning complete. Reduced rows from {len(df)} to {len(df_cleaned)}.")
         
         # Iterate over DataFrame rows
-        for index, row in df.iterrows():
+        for index, row in df_cleaned.iterrows():
             # Convert the Pandas Series (row) into a Python dictionary
-
             record_dict = row.to_dict()
 
             # The producer's 'value_serializer' will handle the conversion to JSON bytes
@@ -43,7 +61,7 @@ if __name__ == '__main__':
             # Every 100 cars (data points)
             if(index % 100 == 0):
                 # Print an update message with the manufacturer 
-                print(f"Sending record {index + 1}: {record_dict['manufacturer']}...")
+                print(f"Sending record {index}: {record_dict['manufacturer']}...")
 
             # Optional: Add a short delay to simulate a real-time stream
             time.sleep(0.001)
