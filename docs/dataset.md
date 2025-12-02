@@ -1,7 +1,7 @@
 # Dataset Documentation
 
 - Source: Craigslist Car Listings (Kaggle)
-- Dataset Source: https://www.kaggle.com/....
+- Dataset Source: [https://www.kaggle.com/....](https://www.kaggle.com/datasets/austinreese/craigslist-carstrucks-data?resource=download)
 Not stored in the repo due to size limits.
 
 - Downloaded: 2025-11-18
