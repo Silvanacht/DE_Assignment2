@@ -1,5 +1,6 @@
 # Option A:
-# 0) The 'vehicles.csv' should be in the same directory as the python scripts to run the ProducerReal.py
+# 0a) The 'vehicles.csv' should be in the same directory as the python scripts to run the ProducerReal.py
+# 0b) Move to the venv ('venv_A2_stream') on the local terminal
 
 # 1) To run the SparkStream.py that is also on the VM (and contains a consumer), first run the following command on the VM (not in the venv!):
 # spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1 SparkFinal.py
@@ -16,12 +17,14 @@
 
 # 0a) The 'vehicles.csv' should be in the same directory as the python scripts to run the ProducerReal.py
 # 0b) The 'vehicles.csv' and ProducerReal.py should be in the same directory as ConsumerReal.py
+# 0c) Move to the venv ('venv_A2_stream') on the local terminal in two windows
 
-# 1) Run the ConsumerReal.py with the following command
+# 1) Run the ConsumerReal.py in 1 window with the following command:
+# python ConsumerReal.py
+
+# 2) Run the ProducerReal.py in the other window with the following command:
 # python ProducerReal.py
 
-# 2) Run the ProducerReal.py script locally with the following command:
-# python ProducerReal.py
 # 3) Enjoy!
 
 
