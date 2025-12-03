@@ -3,7 +3,7 @@
 # 0b) Move to the venv ('venv_A2_stream') on the local terminal
 
 # 1) To run the SparkStream.py that is also on the VM (and contains a consumer), first run the following command on the VM (not in the venv!):
-# spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1 SparkFinal.py
+# spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1 SparkStream.py
 
 # 2) Run the ProducerReal.py script locally (to save GCS credits) with the following command:
 # python ProducerReal.py
